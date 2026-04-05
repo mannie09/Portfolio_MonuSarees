@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700&family=Work+Sans:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply m-0 p-0 overflow-x-hidden bg-surface text-on-surface font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline;
+  }
+
+  /* Global noise overlay (3% opacity silk weave pattern) */
+  body::before {
+    content: "";
+    @apply pointer-events-none fixed inset-0 z-[9999];
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+  }
+}
+
+@layer utilities {
+  .clip-path-none {
+    clip-path: none;
+  }
+  .ambient-shadow {
+    box-shadow: 0px 10px 30px rgba(28, 28, 24, 0.05);
+  }
+  .glass-panel {
+    @apply bg-surface/80 backdrop-blur-[20px];
+  }
+  .silk-gradient {
+    background: radial-gradient(circle, theme('colors.primary') 0%, theme('colors.primary-container') 100%);
+  }
+  .ghost-border {
+    @apply border border-outline-variant/20;
+  }
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .writing-vertical {
+    writing-mode: vertical-rl;
+  }
+  .link-glow:hover {
+    text-shadow: 0 0 15px rgba(253, 195, 77, 0.4);
+  }
+  .reveal-text {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+/* Custom Scrollbar from Reference */
+::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #FBF9F4;
+}
+::-webkit-scrollbar-thumb {
+  background: #4A0404;
+}
